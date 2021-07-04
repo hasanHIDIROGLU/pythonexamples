@@ -4,12 +4,18 @@
 # belirlenen yem miktarına ve üst limit değerlerine göre günlük yem miktarlarını ve yemin kaç gün yeteceğini hesaplayan
 # uygulama geliştirmenizdir. Aşağıda uygulamaya ilişkin örnek çıktılar verilmiştir. Not: Son gün kalan miktar üst limitin
 # yarısından veya dörtte birinden az ise bu durumda kalan yemin tamamı verilmelidir.
-import math
-baslangic = int(input("başlangıç değerini giriniz:"))
-bitis = int(input("bitiş değerini giriniz:"))
-for x in range(baslangic, bitis + 1):
-    for z in range(1, x ):
-        for y in range(z + 1, x ):
-            if math.hypot(z, y) == x:
-                print(z, y, x)
-                print(y, z, x)
+
+yem_miktari = int(input("yem miktarını giriniz:"))
+ust_limit = int(input("üst limit miktarını giriniz:"))
+tek_gun_yem_miktari = ust_limit // 2
+cift_gun_yem_miktari = ust_limit // 4
+gun_sayisi = 1
+while yem_miktari > 0:
+    if yem_miktari > tek_gun_yem_miktari:
+        print("{0}. gün verilen yem : {1}".format(gun_sayisi,tek_gun_yem_miktari))
+        gun_sayisi += 1
+        yem_miktari -= tek_gun_yem_miktari
+        tek_gun_yem_miktari,cift_gun_yem_miktari=cift_gun_yem_miktari,tek_gun_yem_miktari
+    else:
+        print("{0}. gün verilen miktar : {1}".format(gun_sayisi,yem_miktari))
+        yem_miktari=0
